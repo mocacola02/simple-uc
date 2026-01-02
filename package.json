@@ -1,0 +1,49 @@
+{
+  "name": "simple-uc",
+  "displayName": "Simple UnrealScript",
+  "description": "Simple and improved UnrealScript support for VS Code/Codium.",
+  "version": "0.0.1",
+  "publisher": "LunaMoca",
+  "main": "./out/extension.js",
+  "scripts": {
+    "compile": "npx tsc -p .",
+    "watch": "npx tsc -watch -p ."
+  },
+  "engines": {
+    "vscode": "^1.107.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "properties": {
+        "unrealscript.gamePath": {
+          "type": "string",
+          "description": "Path to the root folder of your UE1 game (contains folders like Textures, System, etc.)"
+        }
+      }
+    },
+    "languages": [
+      {
+        "id": "unrealscript",
+        "aliases": ["UnrealScript", "unrealscript"],
+        "extensions": [".uc"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "unrealscript",
+        "scopeName": "source.unrealscript",
+        "path": "./syntaxes/unrealscript.tmLanguage.json"
+      }
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.3",
+    "@types/vscode": "^1.107.0",
+    "typescript": "^5.9.3"
+  }
+}

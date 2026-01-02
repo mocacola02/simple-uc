@@ -1,0 +1,139 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "UnrealScript",
+  "scopeName": "source.unrealscript",
+
+  "patterns": [
+    { "include": "#comments" },
+
+    { "include": "#class-declaration" },
+    { "include": "#extends-clause" },
+    { "include": "#function-declaration" },
+    { "include": "#variable-declaration" },
+
+    { "include": "#keywords" },
+    { "include": "#storage" },
+    { "include": "#types" },
+    { "include": "#constants" },
+    { "include": "#numbers" },
+    { "include": "#strings" }
+  ],
+
+  "repository": {
+    "comments": {
+      "patterns": [
+        { "name": "comment.line.double-slash.unrealscript", "match": "//.*$" },
+        { "name": "comment.block.unrealscript", "begin": "/\\*", "end": "\\*/" }
+      ]
+    },
+
+    "class-declaration": {
+      "patterns": [
+        {
+          "match": "\\b(class)\\s+(\\w+)\\b",
+          "captures": {
+            "1": { "name": "keyword.control.unrealscript" },
+            "2": { "name": "entity.name.type.class.unrealscript" }
+          }
+        }
+      ]
+    },
+
+    "extends-clause": {
+      "patterns": [
+        {
+          "match": "\\bextends\\b",
+          "name": "keyword.control.unrealscript"
+        },
+        {
+          "match": "\\bextends\\s+(\\w+)\\b",
+          "captures": {
+            "1": { "name": "entity.name.type.class.unrealscript" }
+          }
+        }
+      ]
+    },
+
+    "function-declaration": {
+      "patterns": [
+        {
+          "match": "\\b(function)\\s+(\\w+)\\b",
+          "captures": {
+            "1": { "name": "keyword.control.unrealscript" },
+            "2": { "name": "entity.name.function.unrealscript" }
+          }
+        }
+      ]
+    },
+
+    "variable-declaration": {
+      "patterns": [
+        {
+          "match": "\\b(var)\\s+(int|float|bool|byte|string|name|vector|rotator|array|struct|class)\\s+(\\w+)\\b",
+          "captures": {
+            "1": { "name": "storage.modifier.unrealscript" },
+            "2": { "name": "storage.type.unrealscript" },
+            "3": { "name": "variable.other.definition.unrealscript" }
+          }
+        }
+      ]
+    },
+
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.unrealscript",
+          "match": "\\b(event|state|defaultproperties|if|else|while|for|foreach|switch|case|return|break|continue|until)\\b"
+        }
+      ]
+    },
+
+    "storage": {
+      "patterns": [
+        {
+          "name": "storage.modifier.unrealscript",
+          "match": "\\b(const|simulated|exec|native|private|protected|public|localized|config|global)\\b"
+        }
+      ]
+    },
+
+    "types": {
+      "patterns": [
+        {
+          "name": "storage.type.unrealscript",
+          "match": "\\b(int|float|bool|byte|string|name|vector|rotator|array|struct|class)\\b"
+        }
+      ]
+    },
+
+    "constants": {
+      "patterns": [
+        {
+          "name": "constant.language.unrealscript",
+          "match": "\\b(True|False|None)\\b"
+        }
+      ]
+    },
+
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.unrealscript",
+          "match": "\\b\\d+(\\.\\d+)?\\b"
+        }
+      ]
+    },
+
+    "strings": {
+      "name": "string.quoted.double.unrealscript",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.unrealscript",
+          "match": "\\\\."
+        }
+      ]
+    }
+  }
+}
